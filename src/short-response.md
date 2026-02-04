@@ -37,6 +37,12 @@ But an error is thrown.
 
 **Your Answer:**
 
+1. The error thrown is '**Uncaught TypeError** cannot read properties of null (reading 'style)'.
+
+2. This error occurs because we placed our `<script>` **tag** before our `<body>`, which means the **body** won't be loaded when the `<script>` tries to run.
+
+3. In order to fix this the `<script>` tag has to be placed at the bottom of our `<body>`.
+
 ## Question 2: event.target vs event.currentTarget
 
 Consider this HTML:
@@ -60,6 +66,10 @@ div.addEventListener('click', (event) => {
 When a user clicks the button, both `event.target` and `event.currentTarget` are logged. Explain what each property represents in this scenario and why they might be different.
 
 **Your Answer:**
+- `event.target` in this instance, represents the `button`. The button is what triggered the event.
+- `event.currentTarget` represents `button-container` which is the **listener element** that we attach the `addEventListener` to that triggers the event.
+
+- The difference is that `event.currentTarget` represents the container in which the element and eventlistener is attached to while `event.target` represents the element that triggered the event.
 
 ## Question 3: Creating Elements Dynamically
 
@@ -95,6 +105,10 @@ document.body.append(productCard);
 However, when the page loads and the code is executed, the user isn't able to see the image, product name or product price. What is the issue with this code?
 
 **Your Answer:**
+- The reason that the `image`, `product`, and `price` are not loading is because we have to link the parent element to the children element. In order to link them we would have to `append` the `children element` to the `parent element` by using the following syntax:
+ ``productCard.append(productImage, productName, productPrice)``
+
+ - After the linking the `children elements` to the `parent elements`, the `parent elements` must be linked/ added to the `document`.
 
 
 ## Question 4: Event Delegation and event.target.closest()
