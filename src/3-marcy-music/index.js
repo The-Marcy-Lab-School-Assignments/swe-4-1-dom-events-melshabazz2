@@ -32,3 +32,7 @@ const playlists = [
 ];
 
 // Add your code here...
+const playlistGrid = document.querySelector('#playlist-grid')
+playlistGrid.addEventListener('click', () => {
+
+})
