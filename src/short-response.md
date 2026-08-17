@@ -39,7 +39,7 @@ But an error is thrown.
 
 1. The error thrown is '**Uncaught TypeError** cannot read properties of null (reading 'style)'.
 
-2. This error occurs because we placed our `<script>` **tag** before our `<body>`, which means the **body** won't be loaded when the `<script>` tries to run.
+2. This error occurs because we placed our `<script>` **tag** before our `<body>`, so it runs and tries to select `#my-button` before the browser has parsed the <body> and created that element at that point in time document.querySelector('#my-button') returns null.
 
 3. In order to fix this the `<script>` tag has to be placed at the bottom of our `<body>`.
 
@@ -106,7 +106,7 @@ However, when the page loads and the code is executed, the user isn't able to se
 
 **Your Answer:**
 - The reason that the `image`, `product`, and `price` are not loading is because we have to link the parent element to the children element. In order to link them we would have to `append` the `children element` to the `parent element` by using the following syntax:
- ``productCard.append(productImage, productName, productPrice)``
+ `(productCard.append(productImage, productName, productPrice)`
 
  - After the linking the `children elements` to the `parent elements`, the `parent elements` must be linked/ added to the `document`.
 
@@ -149,6 +149,9 @@ todoList.addEventListener('click', (event) => {
 2. Explain what the `event.target.closest('li')` method does and why it is essential to this approach.
 
 **Your Answer:**
+- TThe term used for this method is event delegation. The other option would be to add separate event listener for each item on the list. But event delegation is better because it allows us to use only one event listener for all the items on the list, and if we later add more items to that list they will automatically be served by that same listener.
+
+event.target.closest('li') helps to find the matching ancestor from where the user has clicked on the item's child. And this is important because the click event listener is on the parent and therefore it fits any of its descendants.
 
 ## Question 5: NodeList
 
@@ -158,3 +161,11 @@ Do some independent learning and reading about the `querySelectorAll()` method. 
 2. What is the difference between a `NodeList` and an array? Why is it important to know this difference?
 
 **Your Answer:**
+
+- The method querySelector() is used to access only the single first element that matches the provided CSS selector, whereas querySelectorAll() will access all the elements that match the CSS selector given as an input in a NodeList. 
+Using querySelectorAll() is crucial for when one wants to influence groups of elements on a particular webpage. 
+As an example, whenever you want to check and filter as to which of the DOM elements which have the class .playlist-card is selected, one would access those elements using the aforementioned method.
+
+- What is important to know is that NodeList has similarities with the array and one can loop through its elements using forEach(); however, this object is not the real array because NodeList doesn’t possess the methods of arrays such as .map(), .filter() and .reduce() in most browsers. Such facts should be taken into consideration as when coding it is possible to make an assumption that NodeList methods will function the same way as those of arrays, which may lead one to some errors. In case the relevant DOM objects require the use of array methods, it is necessary to convert the NodeList to an array by calling array.from(nodeList)
+
+
